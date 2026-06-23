@@ -2,8 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { getDatabase } from './db.js';
 import { authenticateToken, JWT_SECRET } from './middleware.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -312,6 +317,14 @@ app.delete('/api/goals/:id', authenticateToken, async (req, res) => {
     console.error('Error deleting savings goal:', err);
     res.status(500).json({ error: 'Failed to delete savings goal.' });
   }
+});
+
+// Serve static assets from the client build folder
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// Wildcard route to direct all non-API requests to the client index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 // Start Express Listener

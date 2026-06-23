@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export const JWT_SECRET = 'FINSPIRE_JWT_SECRET_KEY_12345';
+export const JWT_SECRET = process.env.JWT_SECRET || 'FINSPIRE_JWT_SECRET_KEY_12345';
 
 export function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];

@@ -5,7 +5,7 @@ import { dirname, join } from 'path';
 import bcrypt from 'bcryptjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbPath = join(__dirname, '../expense.db');
+const dbPath = process.env.DATABASE_PATH || join(__dirname, '../expense.db');
 
 let db = null;
 

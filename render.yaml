@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: finspire-dashboard
+    env: node
+    # Render automatically runs npm install first. Our build script will also install server dependencies and build the UI.
+    buildCommand: npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: JWT_SECRET
+        generateValue: true # Generates a secure, random secret key automatically on Render
+      - key: DATABASE_PATH
+        value: ./expense.db # Local file (ephemeral on free tier, resets on restarts)
+
+      # -------------------------------------------------------------------
+      # PERSISTENT DATABASE CONFIGURATION (Paid Plans Only)
+      # -------------------------------------------------------------------
+      # If you upgrade to a paid web service on Render and attach a disk,
+      # uncomment the lines below and change DATABASE_PATH to: /var/data/expense.db
+      #
+      # - key: DATABASE_PATH
+      #   value: /var/data/expense.db
+      #
+      # disk:
+      #   name: finspire-db-disk
+      #   mountPath: /var/data
+      #   sizeGB: 1
+      # -------------------------------------------------------------------

@@ -7,7 +7,8 @@
     "server": "npm run dev --prefix server",
     "client": "vite",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "tsc -b && vite build",
+    "build": "npm install --prefix server && tsc -b && vite build",
+    "start": "node server/index.js",
     "lint": "oxlint",
     "preview": "vite preview"
   },
