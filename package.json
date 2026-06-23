@@ -1,0 +1,32 @@
+{
+  "name": "expense",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "vite",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^12.40.0",
+    "lucide-react": "^1.21.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-is": "^19.2.7",
+    "recharts": "^3.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "concurrently": "^10.0.3",
+    "oxlint": "^1.69.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.0"
+  }
+}
